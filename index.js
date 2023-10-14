@@ -10,6 +10,8 @@ const countriesNode = document.getElementById("countries");
 function fetchCountries(regions) {
   fetch("https://restcountries.com/v3.1/all?fields=name,flags,region")
     .then((res) => res.json())
+    //Ordeno la lista de countries alfabeticamente antes de seguir
+    .then((countries) => countries.sort((a, b) => a.name.official.localeCompare(b.name.official)))
     .then((countries) => {
       if (regions) {
         countries = countries.filter(country => regions.includes(country.region)); 
