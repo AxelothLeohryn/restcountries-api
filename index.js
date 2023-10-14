@@ -1,23 +1,46 @@
-const cardTemplate = function (/* You can pass the data here*/) {
+const cardTemplate = function (imgUrl, countryName) {
   return `<div class="card">
-              <img id="flag-image" src="ADD THE IMAGE LINK HERE" alt="flag" />
-              <h1 class="center">ADD COUNTRY NAME HERE</h1>
+              <img id="flag-image" src="${imgUrl}" alt="flag" />
+              <h2 class="center">${countryName}</h2>
             </div>`;
 };
 
 const countriesNode = document.getElementById("countries");
 
-fetch(/* Need the provide API URL to get all countries */)
-  .then(function (response) {
-    // fetch() returns a promise containing the response (a Response object).
-    // This is just an HTTP response, not the actual JSON. 
-    // To extract the JSON body content from the response, 
-    // we use the json() method and pass it into the next .then()
-  })
-  .then(function (countries) {
-    // Here is where you'll need to add into the DOM all the countries received from API 
+function fetchCountries(regions) {
+  fetch("https://restcountries.com/v3.1/all?fields=name,flags,region")
+    .then((res) => res.json())
+    .then((countries) => {
+      if (regions) {
+        countries = countries.filter(country => regions.includes(country.region)); 
+        for (let i = 0; i < countries.length; i++) {
+          countriesNode.innerHTML += cardTemplate(
+            countries[i].flags.png || countries[i].flags.svg,
+            countries[i].name.official || countries[i].name.common
+          );
+        }
+      }
+      else {
+        for (let i = 0; i < countries.length; i++) {
+          countriesNode.innerHTML += cardTemplate(
+            countries[i].flags.png || countries[i].flags.svg,
+            countries[i].name.official || countries[i].name.common
+          );
+        }
+      }
+    });
+}
+fetchCountries();
 
-    // 1 - We will need to iterate the countries variable with a loop
-    // 2 - You can use the cardTemplate() function to create a div with a class card already styled
-    // 💡 you can use countriesNode variable to add elements
-  });
+document.querySelector("form").addEventListener("submit", function (event) {
+  event.preventDefault();
+  countriesNode.innerHTML = '';
+  // console.log(event);
+
+  let regions = [];
+  for (let i = 0; i < event.target.length; i++) {
+    if (event.target[i].checked === true) regions.push(event.target[i].value);
+  }
+  // console.log(regions);
+  fetchCountries(regions); 
+});

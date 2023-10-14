@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <h1 id="title" class="center">Countries of the World 🌎</h1>
-    <div id="countries"></div>
-    <script src="./index.js"></script>
-  </body>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+  <h1 id="title" class="center">Countries of the World 🌎</h1>
+  <form id="filter">
+    <label for="continents">Continente</label>
+    <div id="continents">
+      <input type="checkbox" id="europe" name="continents" value="Europe">
+      <label for="europe">Europe</label>
+      <input type="checkbox" id="americas" name="continents" value="Americas">
+      <label for="americas">Americas</label>
+      <input type="checkbox" id="asia" name="continents" value="Asia">
+      <label for="asia">Asia</label>
+      <input type="checkbox" id="africa" name="continents" value="Africa">
+      <label for="africa">Africa</label>
+      <input type="checkbox" id="oceania" name="continents" value="Oceania">
+      <label for="oceania">Oceania</label>
+      <input type="checkbox" id="antarctic" name="continents" value="Antarctic">
+      <label for="antarctic">Antarctic</label>
+    </div>
+    <input class="button" type="submit" value="Filtrar">
+  </form>
+  <div id="countries"></div>
+  <script src="./index.js"></script>
+</body>
+
 </html>
