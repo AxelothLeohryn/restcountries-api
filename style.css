@@ -35,18 +35,20 @@ form {
   border-radius: 16px;
 }
 
-form > label {
+form>label {
   font-weight: bolder;
 }
+
 #continents {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
-#continents > label {
+
+#continents>label {
   margin-right: 10px;
 }
+
 .button {
   width: 30%;
 }
-
