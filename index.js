@@ -42,5 +42,7 @@ document.querySelector("form").addEventListener("submit", function (event) {
     if (event.target[i].checked === true) regions.push(event.target[i].value);
   }
   // console.log(regions);
-  fetchCountries(regions); 
+
+  //Si no hay ningun checkbox seleccionado, que aparezcan todos los paises
+  regions.length > 0 ? fetchCountries(regions) : fetchCountries();
 });
